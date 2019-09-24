@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.active{
+		color: red;
+	}
+	#mainContents{
+		width: 600px;
+		height: 300px;border: 1px solid #000;
+	}
+	</style>
+</head>
+<body>
+	<ul class=" clear">
+		<li class="clickNav" data-src="nav_1.html" >首页管理</li>
+		<li class="clickNav" data-src="nav_2.html" >用户管理</li>
+		<li class="clickNav" data-src="nav_3.html" >常用软件管理</li>
+		<li class="clickNav" data-src="nav_4.html" >微应用管理</li>
+	</ul>
+	<!-- 内容 -->
+	<div id="mainContents"></div>
+	
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script>
+		$('#mainContents').load('nav_2.html');
+
+		$(function(){
+	   	$("li.clickNav").on("click",function(){
+	      var address =$(this).attr("data-src");
+	      $('#mainContents').empty();
+	      $('#mainContents').load('./' + address);
+
+	      //阻止跳转
+	      $(this).addClass('active').siblings('li').removeClass('active');
+	      return false;
+
+		  });
+		});
+	</script>
+</body>
+</html>
